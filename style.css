@@ -377,10 +377,17 @@ nav a[aria-current=page]:after { transform:scaleX(1); }
 
 .cv-head { text-align:center; margin-bottom:6px; }
 .cv-name { font-size:32px; letter-spacing:.06em; font-weight:700; margin:0 0 6px; }
-.cv-contact { margin:0; font-size:14px; }
-.cv-contact span { margin:0 7px; }
-.cv-contact a, .cv-contact .nowrap { white-space:nowrap; }
-.cv-contact span.nowrap { margin:0; }
+.cv-contact {
+  margin:0;
+  font-size:14px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:baseline;
+  row-gap:2px;
+}
+.cv-contact > span:not(.nowrap) { margin:0 7px; }
+.cv-contact a, .cv-contact .nowrap { white-space:nowrap; max-width:100%; overflow-wrap:anywhere; }
 .cv-contact a { background:linear-gradient(#000,#000) 0 100%/0 1px no-repeat; transition:background-size .3s; }
 .cv-contact a:hover { background-size:100% 1px; }
 .cv-section h3 {
@@ -406,15 +413,17 @@ nav a[aria-current=page]:after { transform:scaleX(1); }
 .project-link:hover { color:var(--accent); }
 .project-link[hidden] { display:none; }
 
+@media(max-width:1000px) {
+  .cv-contact { column-gap:16px; }
+  .cv-contact > span:not(.nowrap) { display:none; }
+}
 @media(max-width:720px) {
   .resume { padding:40px 0 56px; }
   .resume-top { margin-bottom:28px; }
   .resume-top .actions { width:100%; }
   .sheet { padding:28px 20px 32px; font-size:14px; border-radius:3px; }
   .cv-name { font-size:25px; }
-  .cv-contact { font-size:12.5px; line-height:1.7; }
-  .cv-contact span { margin:0 4px; }
-  .cv-contact span.nowrap { margin:0; }
+  .cv-contact { font-size:12.5px; line-height:1.6; column-gap:14px; }
   .cv-row { flex-direction:column; gap:0; }
   .cv-row > span:last-child { text-align:left; white-space:normal; color:#444; }
 }
@@ -431,7 +440,8 @@ nav a[aria-current=page]:after { transform:scaleX(1); }
   .cv-entry { margin-bottom:6px; }
   .cv-in { animation:none; }
   .cv-name { font-size:22pt; }
-  .cv-contact { font-size:10pt; }
+  .cv-contact { font-size:9.5pt; column-gap:0; }
+  .cv-contact > span:not(.nowrap) { display:inline; margin:0 6px; }
   .cv-section h3 { font-size:11pt; margin:12px 0 5px; }
 }
 
