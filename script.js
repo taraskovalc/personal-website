@@ -1,11 +1,77 @@
 // Copyright (c) 2026 Taras Koval. All rights reserved. See LICENSE.
 'use strict';
 
-// Add selected, finished projects here when they're ready.
+// Add finished projects here when they're ready.
 // Shape: { title, description, technologies: ['Python'], url: 'https://github.com/…' }
 const projects = [];
 
 (() => {
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Name: split into letters for the entrance + hover ---------- */
+  let i = 0;
+  document.querySelectorAll('.name-line').forEach(line => {
+    const dot = line.querySelector('.name-dot');
+    const text = [...line.childNodes].filter(n => n.nodeType === Node.TEXT_NODE).map(n => n.textContent).join('');
+    line.textContent = '';
+    for (const letter of text) {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.style.setProperty('--i', i++);
+      span.textContent = letter;
+      line.append(span);
+    }
+    if (dot) line.append(dot);
+  });
+
+  /* ---------- Tools line: each word "decodes" into the next ---------- */
+  const words = ['Python', 'Java', 'C', 'JavaScript', 'HTML/CSS', 'Linux', 'Git', 'Docker'];
+  const scramble = document.querySelector('#scramble');
+  const glyphs = '!<>-_/[]{}=+*^?#01';
+  let wordIndex = 0;
+  let hoverPause = false;
+
+  function decodeTo(target) {
+    if (reduceMotion) { scramble.textContent = target; return; }
+    const from = scramble.textContent;
+    const length = Math.max(from.length, target.length);
+    const frames = 18;
+    let frame = 0;
+    (function tick() {
+      let out = '';
+      for (let n = 0; n < length; n++) {
+        const settleAt = (n / length) * frames * .7 + frames * .3;
+        if (frame >= settleAt) out += target[n] || '';
+        else out += glyphs[Math.floor(Math.random() * glyphs.length)];
+      }
+      scramble.textContent = out;
+      if (++frame <= frames) requestAnimationFrame(() => setTimeout(tick, 28));
+      else scramble.textContent = target;
+    })();
+  }
+  document.querySelector('.stack').addEventListener('mouseenter', () => { hoverPause = true; });
+  document.querySelector('.stack').addEventListener('mouseleave', () => { hoverPause = false; });
+  setInterval(() => {
+    if (hoverPause || document.hidden || document.querySelector('#home').hidden) return;
+    wordIndex = (wordIndex + 1) % words.length;
+    decodeTo(words[wordIndex]);
+  }, 2400);
+
+  /* ---------- Soft cursor glow ---------- */
+  const glow = document.querySelector('.glow');
+  if (!reduceMotion && matchMedia('(hover: hover)').matches) {
+    let tx = innerWidth / 2, ty = innerHeight / 3, x = tx, y = ty;
+    addEventListener('pointermove', e => { tx = e.clientX; ty = e.clientY; glow.classList.add('on'); }, {passive: true});
+    document.addEventListener('pointerleave', () => glow.classList.remove('on'));
+    (function follow() {
+      x += (tx - x) * .08;
+      y += (ty - y) * .08;
+      glow.style.setProperty('--gx', `${x}px`);
+      glow.style.setProperty('--gy', `${y}px`);
+      requestAnimationFrame(follow);
+    })();
+  }
+
   /* ---------- Projects ---------- */
   const list = document.querySelector('#project-list');
   if (projects.length) {
@@ -37,40 +103,6 @@ const projects = [];
     });
   }
 
-  /* ---------- Toolkit commit graph ---------- */
-  const readout = document.querySelector('#readout');
-  const commits = [...document.querySelectorAll('.commit')];
-  const idleHTML = readout.innerHTML;
-  readout.classList.add('idle');
-  let pinned = null;
-
-  function show(commit) {
-    commits.forEach(c => c.classList.toggle('selected', c === commit));
-    readout.classList.toggle('idle', !commit);
-    if (!commit) { readout.innerHTML = idleHTML; return; }
-    const hash = document.createElement('span');
-    hash.className = 'readout-hash';
-    hash.textContent = commit.dataset.hash;
-    const branch = document.createElement('span');
-    branch.className = 'readout-branch';
-    branch.textContent = commit.dataset.lane;
-    const msg = document.createElement('span');
-    msg.className = 'readout-msg';
-    msg.textContent = commit.dataset.msg;
-    readout.replaceChildren(hash, branch, msg);
-  }
-  commits.forEach(commit => {
-    commit.setAttribute('aria-label', `${commit.querySelector('.label').textContent}: ${commit.dataset.msg}`);
-    commit.addEventListener('mouseenter', () => show(commit));
-    commit.addEventListener('mouseleave', () => show(pinned));
-    commit.addEventListener('focus', () => show(commit));
-    commit.addEventListener('blur', () => show(pinned));
-    commit.addEventListener('click', () => {
-      pinned = pinned === commit ? null : commit;
-      show(pinned);
-    });
-  });
-
   /* ---------- Page views (hash routes work on any static host) ---------- */
   const pages = [...document.querySelectorAll('.page-view')];
   const navLinks = [...document.querySelectorAll('.nav-link')];
@@ -81,9 +113,7 @@ const projects = [];
     const active = document.getElementById(activePage);
     pages.forEach(page => { page.hidden = page !== active; });
     navLinks.forEach(link => {
-      const selected = link.getAttribute('href') === `#${activePage}`;
-      link.classList.toggle('active', selected);
-      if (selected) link.setAttribute('aria-current', 'page');
+      if (link.getAttribute('href') === `#${activePage}`) link.setAttribute('aria-current', 'page');
       else link.removeAttribute('aria-current');
     });
     document.title = titles[activePage];
@@ -106,16 +136,14 @@ const projects = [];
 
   /* ---------- Copy email ---------- */
   const address = document.querySelector('#email-address').textContent.trim();
-  const copyButton = document.querySelector('.copy-email');
-  const copyLabel = copyButton.querySelector('.copy-label');
-  const copyStatus = document.querySelector('#copy-status');
+  const copyChip = document.querySelector('.copy-chip');
+  const copyLabel = copyChip.querySelector('.copy-label');
   let copyTimer;
   async function copyText(text) {
     try {
       await navigator.clipboard.writeText(text);
       return true;
     } catch {
-      // Fallback for browsers that block the Clipboard API.
       const field = document.createElement('textarea');
       field.value = text;
       field.setAttribute('readonly', '');
@@ -127,39 +155,59 @@ const projects = [];
       return ok;
     }
   }
-  copyButton.addEventListener('click', async () => {
+  copyChip.addEventListener('click', async () => {
     const ok = await copyText(address);
     clearTimeout(copyTimer);
-    copyButton.classList.toggle('copied', ok);
-    copyLabel.textContent = ok ? 'Copied ✓' : 'Copy address';
-    copyStatus.textContent = ok ? 'Address copied — paste it into any email app.' : 'Couldn’t copy automatically. Select the address above instead.';
+    copyChip.classList.toggle('copied', ok);
+    copyLabel.textContent = ok ? 'Copied ✓' : 'Select it';
     copyTimer = setTimeout(() => {
-      copyButton.classList.remove('copied');
-      copyLabel.textContent = 'Copy address';
-      copyStatus.textContent = '';
-    }, 3000);
+      copyChip.classList.remove('copied');
+      copyLabel.textContent = 'Copy';
+    }, 2200);
   });
 
   /* ---------- Contact form (FormSubmit) ---------- */
   const form = document.querySelector('#contact-form');
   const status = document.querySelector('#form-status');
-  const send = form.querySelector('button[type="submit"]');
+  const send = form.querySelector('.send-button');
+  const sendLabel = send.querySelector('.send-label');
+  const sent = document.querySelector('#sent');
+  const emailInput = form.querySelector('#sender-email');
+  const messageInput = form.querySelector('#message');
   let submitting = false;
+
+  function setError(input, text) {
+    input.closest('.field').classList.toggle('invalid', Boolean(text));
+    input.setAttribute('aria-invalid', String(Boolean(text)));
+    document.getElementById(input.getAttribute('aria-describedby')).textContent = text;
+  }
+  function validate() {
+    const email = emailInput.value.trim();
+    const message = messageInput.value.trim();
+    const emailError = !email ? 'Please add your email so I can reply.' : !emailInput.checkValidity() ? 'That email doesn’t look quite right.' : '';
+    const messageError = !message ? 'Please write a message.' : message.length < 10 ? 'A little more detail, please (10+ characters).' : '';
+    setError(emailInput, emailError);
+    setError(messageInput, messageError);
+    if (emailError) emailInput.focus();
+    else if (messageError) messageInput.focus();
+    return !emailError && !messageError;
+  }
+  [emailInput, messageInput].forEach(input => input.addEventListener('input', () => {
+    if (input.closest('.field').classList.contains('invalid')) setError(input, '');
+  }));
+
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (submitting || !form.reportValidity()) return;
+    if (submitting || !validate()) return;
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return;
-    if (!data.name.trim() || data.message.trim().length < 10) {
-      status.dataset.state = 'error';
-      status.textContent = 'Please include your name and a message of at least 10 characters.';
-      return;
-    }
+    if (!data.name.trim()) data.name = '(no name given)';
     submitting = true;
     send.disabled = true;
-    form.setAttribute('aria-busy', 'true');
-    send.firstElementChild.textContent = 'Sending…';
+    send.classList.add('loading');
+    sendLabel.textContent = 'Sending…';
     status.textContent = '';
+    delete status.dataset.state;
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
@@ -170,26 +218,25 @@ const projects = [];
         signal: controller.signal
       });
       const result = await response.json();
-      if (/activat|confirm|verif|check.{0,20}(email|inbox)/i.test(result.message || '')) {
-        status.dataset.state = 'error';
-        status.textContent = 'The form isn’t switched on yet. Please email me directly using the address on this page.';
-      } else {
-        if (!response.ok || !(result.success === true || result.success === 'true')) {
-          throw new Error('Submission was not accepted.');
-        }
-        status.dataset.state = 'success';
-        status.textContent = 'Your message was sent. Thanks for saying hello!';
-        form.reset();
-      }
-    } catch (error) {
+      if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error(result.message || 'Not accepted');
+      form.reset();
+      form.hidden = true;
+      sent.hidden = false;
+      sent.focus();
+    } catch {
       status.dataset.state = 'error';
-      status.textContent = 'Your message couldn’t be sent. Please email me directly using the address on this page.';
+      status.textContent = 'Sorry, that didn’t send. Please try again, or email me directly at the address above.';
     } finally {
       clearTimeout(timeout);
       submitting = false;
       send.disabled = false;
-      form.removeAttribute('aria-busy');
-      send.firstElementChild.textContent = 'Send message';
+      send.classList.remove('loading');
+      sendLabel.textContent = 'Send message';
     }
+  });
+  document.querySelector('#send-another').addEventListener('click', () => {
+    sent.hidden = true;
+    form.hidden = false;
+    form.querySelector('input:not([type=hidden]):not(.honeypot)').focus();
   });
 })();

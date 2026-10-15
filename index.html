@@ -10,103 +10,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#fcfcfa">
   <title>Taras Koval — Computer Science at Western</title>
-  <meta name="description" content="Taras Koval. Undergraduate Computer Science student at Western University, graduating in 2029.">
+  <meta name="description" content="Taras Koval. Computer Science student at Western University in London, Ontario, graduating in 2029.">
   <meta name="author" content="Taras Koval">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Taras Koval — Computer Science">
-  <meta property="og:description" content="Undergraduate Computer Science at Western University. Class of 2029.">
+  <meta property="og:description" content="Computer Science at Western University. Class of 2029.">
+  <meta property="og:url" content="https://taraskovalc.github.io/personal-website/">
+  <link rel="canonical" href="https://taraskovalc.github.io/personal-website/">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="./style.css">
   <script src="./script.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#home">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
+<div class="glow" aria-hidden="true"></div>
 <div class="site-shell">
   <header class="site-header">
     <a class="wordmark" href="#home" aria-label="Taras Koval, home">tk<span>.</span></a>
-    <nav aria-label="Main navigation"><a href="#home" class="nav-link active" aria-current="page">Home</a><a href="#projects" class="nav-link">Projects</a><a href="#contact" class="nav-link">Contact <span aria-hidden="true">↗</span></a></nav>
+    <nav aria-label="Main navigation">
+      <a href="#home" class="nav-link" aria-current="page">Home</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
   </header>
-  <main>
-    <section class="hero page-view" id="home" tabindex="-1" aria-labelledby="name">
-      <div class="hero-topline"><span class="eyebrow">COMPUTER SCIENCE / WESTERN UNIVERSITY</span><span class="edition">CLASS OF ’29</span></div>
+
+  <main id="main">
+    <!-- ============ HOME ============ -->
+    <section class="page-view home" id="home" tabindex="-1" aria-labelledby="name">
+      <div class="hero-topline rise" style="--d:0">
+        <span class="eyebrow">COMPUTER SCIENCE / WESTERN UNIVERSITY</span>
+        <span class="edition">CLASS OF ’29</span>
+      </div>
+
       <div class="intro-grid">
-        <h1 id="name">Taras<br>Koval<span class="accent">.</span></h1>
+        <h1 id="name" class="name" aria-label="Taras Koval.">
+          <span class="name-line" aria-hidden="true">Taras</span>
+          <span class="name-line" aria-hidden="true">Koval<span class="accent name-dot">.</span></span>
+        </h1>
+
         <div class="intro-copy">
-          <span class="hello">Hi, I’m Taras.</span>
-          <p>I’m an undergraduate Computer Science student at Western University, graduating in <strong>2029.</strong></p>
-          <div class="social-links" aria-label="Find me online">
-            <a href="#contact" aria-label="Email Taras Koval" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/></svg><span>Email</span></a>
-            <a href="https://www.linkedin.com/in/taraskovalc/" aria-label="Taras Koval on LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.1 3.2a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8ZM3.5 8.5h3.2V21H3.5V8.5ZM9 8.5h3.1v1.7h.1c.5-.9 1.5-2 3.4-2 3.6 0 4.4 2.3 4.4 5.3V21h-3.2v-6.6c0-1.6 0-3.2-2-3.2s-2.5 1.5-2.5 3.1V21H9V8.5Z"/></svg><span>LinkedIn</span></a>
-            <a href="https://github.com/taraskovalc" aria-label="Taras Koval on GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.59 9.59 0 0 1 12 6.82c.85 0 1.71.12 2.51.34 1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><span>GitHub</span></a>
+          <p class="hello rise" style="--d:3">Hi, I’m Taras.</p>
+          <p class="bio rise" style="--d:4">I’m a Computer Science student at Western University, graduating in <strong>2029</strong>. I like figuring out how things work, then building my own.</p>
+
+          <p class="stack rise" style="--d:5">
+            <span class="sr-only">Some of the tools I use: Python, Java, C, JavaScript, HTML and CSS, Linux, Git and Docker.</span>
+            <span class="stack-prompt" aria-hidden="true">~/taras $</span>
+            <span class="stack-text" aria-hidden="true">build --with <span class="scramble" id="scramble">Python</span><span class="caret"></span></span>
+          </p>
+
+          <div class="actions rise" style="--d:6">
+            <a class="btn btn-primary" href="#projects">Projects <span class="btn-arrow" aria-hidden="true">→</span></a>
+            <a class="btn btn-soft" href="#contact">Contact <span class="btn-arrow" aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="social-links rise" style="--d:7" aria-label="Find me online">
+            <a href="#contact" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6 8 7 8-7"/></svg><span>Email</span></a>
+            <a href="https://www.linkedin.com/in/taraskovalc/" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.1 3.2a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8ZM3.5 8.5h3.2V21H3.5V8.5ZM9 8.5h3.1v1.7h.1c.5-.9 1.5-2 3.4-2 3.6 0 4.4 2.3 4.4 5.3V21h-3.2v-6.6c0-1.6 0-3.2-2-3.2s-2.5 1.5-2.5 3.1V21H9V8.5Z"/></svg><span>LinkedIn</span></a>
+            <a href="https://github.com/taraskovalc" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.59 9.59 0 0 1 12 6.82c.85 0 1.71.12 2.51.34 1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg><span>GitHub</span></a>
           </div>
         </div>
       </div>
-
-      <!-- Toolkit, drawn as a git commit graph: one branch per area, merged into main. -->
-      <section class="toolkit" aria-labelledby="toolkit-title">
-        <div class="toolkit-top">
-          <h2 class="eyebrow" id="toolkit-title">TOOLKIT</h2>
-          <span class="toolkit-cmd" aria-hidden="true">$ git log --graph --all</span>
-        </div>
-        <div class="graph" role="group" aria-label="Tools I use, drawn as a commit graph. Select a commit for details.">
-          <svg class="graph-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-            <path class="lane-main" d="M5 50 H94"/>
-            <path class="lane-systems" d="M15 50 C21 50 24 90 30 90 H64 C71 90 73 50 80 50"/>
-            <path class="lane-web" d="M25 50 C30 50 31 10 36 10 H66 C72 10 74 50 80 50"/>
-          </svg>
-          <button class="commit up" type="button" data-lane="main" data-hash="a1c09f2" data-msg="init: Python — scripting and automation" style="--x:5;--y:50"><span class="dot"></span><span class="label" data-short="Py">Python</span></button>
-          <button class="commit up" type="button" data-lane="main" data-hash="7be41d0" data-msg="feat: Java — object-oriented programming" style="--x:15;--y:50"><span class="dot"></span><span class="label">Java</span></button>
-          <button class="commit up" type="button" data-lane="main" data-hash="c3d8e55" data-msg="feat: C — memory, pointers and systems fundamentals" style="--x:25;--y:50"><span class="dot"></span><span class="label">C</span></button>
-          <button class="commit" type="button" data-lane="web" data-hash="4f20aa7" data-msg="add HTML — page structure and accessible content" style="--x:36;--y:10"><span class="dot"></span><span class="label">HTML</span></button>
-          <button class="commit" type="button" data-lane="web" data-hash="e91b3c4" data-msg="add CSS — responsive layouts and visual design" style="--x:46;--y:10"><span class="dot"></span><span class="label">CSS</span></button>
-          <button class="commit" type="button" data-lane="web" data-hash="0d6f7e1" data-msg="add JavaScript — interactive behaviour in the browser" style="--x:56;--y:10"><span class="dot"></span><span class="label" data-short="JS">JavaScript</span></button>
-          <button class="commit" type="button" data-lane="web" data-hash="b85c210" data-msg="wip: TypeScript — bringing types to JavaScript" style="--x:66;--y:10"><span class="dot"></span><span class="label" data-short="TS">TypeScript</span></button>
-          <button class="commit" type="button" data-lane="systems" data-hash="5a3e9b8" data-msg="add Linux — the command line and self-hosting" style="--x:32;--y:90"><span class="dot"></span><span class="label">Linux</span></button>
-          <button class="commit" type="button" data-lane="systems" data-hash="f27c64d" data-msg="add Git — version control and collaboration" style="--x:48;--y:90"><span class="dot"></span><span class="label">Git</span></button>
-          <button class="commit" type="button" data-lane="systems" data-hash="96e0d13" data-msg="add Docker — containers and development environments" style="--x:64;--y:90"><span class="dot"></span><span class="label">Docker</span></button>
-          <button class="commit merge" type="button" data-lane="main" data-hash="3c7d5f9" data-msg="merge: web + systems into main" style="--x:80;--y:50"><span class="dot"></span><span class="label">merge</span></button>
-          <button class="commit head" type="button" data-lane="main" data-hash="HEAD" data-msg="→ main — next commit in progress" style="--x:94;--y:50"><span class="dot"></span><span class="label" data-short="HEAD">HEAD → main</span></button>
-        </div>
-        <p class="readout" id="readout" aria-live="polite"><span class="readout-hash">HEAD</span><span class="readout-msg">10 tools across 3 branches. Hover or tap a commit.</span></p>
-      </section>
     </section>
 
-    <section class="projects section page-view" id="projects" tabindex="-1" hidden aria-labelledby="projects-title">
-      <div class="section-heading"><div><span class="eyebrow section-label">01 / PROJECTS</span><h2 id="projects-title">Things I’m building<span class="accent">.</span></h2></div><span class="section-side">IDEAS → PRACTICE</span></div>
+    <!-- ============ PROJECTS ============ -->
+    <section class="page-view projects" id="projects" tabindex="-1" hidden aria-labelledby="projects-title">
+      <p class="eyebrow rise" style="--d:0">PROJECTS</p>
+      <h1 class="page-title rise" style="--d:1" id="projects-title">Projects<span class="accent">.</span></h1>
+      <p class="lede rise" style="--d:2">Things I’m building and learning from. I’ll add projects here once they’re finished.</p>
       <div id="project-list"></div>
-      <div class="projects-empty" id="projects-empty"><span class="empty-mark" aria-hidden="true">[ &nbsp; ]</span><div><h3>A little more soon.</h3><p>I’ll share selected projects here as they’re ready.</p></div><span class="empty-line" aria-hidden="true"></span></div>
+      <div class="empty-card rise" style="--d:3" id="projects-empty">
+        <span class="empty-mark" aria-hidden="true">[ ]</span>
+        <div>
+          <h2>A little more soon.</h2>
+          <p>In the meantime, you can see what I’m working on over on GitHub.</p>
+        </div>
+        <a class="btn btn-soft" href="https://github.com/taraskovalc">GitHub <span class="btn-arrow" aria-hidden="true">→</span></a>
+      </div>
     </section>
 
-    <section class="contact section page-view" id="contact" tabindex="-1" hidden aria-labelledby="contact-title">
-      <div class="contact-copy">
-        <span class="eyebrow section-label">02 / CONTACT</span>
-        <h2 id="contact-title">Good things start<br> with a hello<span class="accent">.</span></h2>
-        <p>Have an idea, an opportunity, or just want to connect? I’d love to hear from you.</p>
-        <div class="email-card">
-          <span class="card-label">EMAIL</span>
-          <p class="email-address" id="email-address">ktaras105@gmail.com</p>
-          <div class="email-actions">
-            <button class="email-action copy-email" type="button"><span class="copy-label">Copy address</span></button>
-            <a class="email-action" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ktaras105@gmail.com&amp;su=Hello%20Taras" target="_blank" rel="noopener">Gmail <span aria-hidden="true">↗</span></a>
-            <a class="email-action" href="https://outlook.office.com/mail/deeplink/compose?to=ktaras105@gmail.com&amp;subject=Hello%20Taras" target="_blank" rel="noopener">Outlook <span aria-hidden="true">↗</span></a>
-            <a class="email-action" href="mailto:ktaras105@gmail.com?subject=Hello%20Taras">Mail app <span aria-hidden="true">↗</span></a>
+    <!-- ============ CONTACT ============ -->
+    <section class="page-view contact" id="contact" tabindex="-1" hidden aria-labelledby="contact-title">
+      <p class="eyebrow rise" style="--d:0">CONTACT</p>
+      <h1 class="page-title rise" style="--d:1" id="contact-title">Let’s talk<span class="accent">.</span></h1>
+      <p class="lede rise" style="--d:2">
+        Hey there! Have a question, an opportunity, or just want to connect? Fill out the form below and I’ll get back to you.
+        You can also email me directly at
+        <span class="email-inline"><a href="mailto:ktaras105@gmail.com" id="email-address">ktaras105@gmail.com</a><button class="copy-chip" type="button" aria-label="Copy email address"><span class="copy-label">Copy</span></button></span>.
+      </p>
+
+      <div class="form-wrap rise" style="--d:3">
+        <form id="contact-form" action="https://formsubmit.co/a71152ca72b24a62c1a925d5de2e4256" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="New message from your website">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="field">
+            <label for="sender-name">Name</label>
+            <input id="sender-name" name="name" autocomplete="name" maxlength="100">
           </div>
-          <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+          <div class="field">
+            <label for="sender-email">Email address <span class="req" aria-hidden="true">*</span></label>
+            <input id="sender-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="email-error">
+            <p class="field-error" id="email-error"></p>
+          </div>
+          <div class="field">
+            <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="6" maxlength="5000" required aria-describedby="message-error"></textarea>
+            <p class="field-error" id="message-error"></p>
+          </div>
+          <div class="form-foot">
+            <button class="btn btn-primary send-button" type="submit"><span class="send-label">Send message</span> <span class="btn-arrow" aria-hidden="true">→</span></button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+
+        <div class="sent" id="sent" hidden tabindex="-1">
+          <svg class="sent-check" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-15"/></svg>
+          <h2>Message sent!</h2>
+          <p>Thanks for reaching out. I’ll get back to you as soon as I can.</p>
+          <button class="btn btn-soft" type="button" id="send-another">Send another</button>
         </div>
       </div>
-      <form id="contact-form" action="https://formsubmit.co/a71152ca72b24a62c1a925d5de2e4256" method="POST">
-        <span class="card-label form-label">OR SEND A MESSAGE HERE</span>
-        <input type="hidden" name="_subject" value="New message from Taras Koval’s website">
-        <input type="hidden" name="_template" value="table">
-        <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" aria-label="Leave this field empty">
-        <div class="field-row"><div class="field"><label for="sender-name">Your name</label><input id="sender-name" name="name" autocomplete="name" placeholder="Alex Chen" maxlength="100" required></div><div class="field"><label for="sender-email">Your email</label><input id="sender-email" name="email" type="email" autocomplete="email" placeholder="alex@example.com" maxlength="254" required></div></div>
-        <div class="field"><label for="message">What’s on your mind?</label><textarea id="message" name="message" rows="4" placeholder="Hi Taras, …" minlength="10" maxlength="5000" required></textarea></div>
-        <div class="form-bottom"><span class="form-note">Straight to my inbox.</span><button class="send-button" type="submit"><span>Send message</span><span aria-hidden="true">↗</span></button></div>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-      </form>
+
+      <div class="elsewhere rise" style="--d:4">
+        <span class="eyebrow">ELSEWHERE</span>
+        <a href="https://www.linkedin.com/in/taraskovalc/">LinkedIn <span aria-hidden="true">↗</span></a>
+        <a href="https://github.com/taraskovalc">GitHub <span aria-hidden="true">↗</span></a>
+        <span class="where">London, Ontario</span>
+      </div>
     </section>
   </main>
-  <footer><a class="footer-name" href="#home">Taras Koval<span class="accent">.</span></a><span>© 2026 Taras Koval · London, Ontario</span><a href="#home" class="back-top">Home <span aria-hidden="true">↗</span></a></footer>
+
+  <footer>
+    <a class="footer-name" href="#home">Taras Koval<span class="accent">.</span></a>
+    <span>© 2026 Taras Koval · London, Ontario</span>
+  </footer>
 </div>
 </body>
 </html>
