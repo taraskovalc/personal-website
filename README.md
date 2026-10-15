@@ -2,7 +2,7 @@
 
 My personal website. I'm a Computer Science student at Western University
 
-**Live site:** https://taraskovalc.github.io/personal-website/
+**Live site:** https://taraskoval.ca/
 
 ## What's here
 
