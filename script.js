@@ -106,7 +106,7 @@ const projects = [];
   /* ---------- Page views (hash routes work on any static host) ---------- */
   const pages = [...document.querySelectorAll('.page-view')];
   const navLinks = [...document.querySelectorAll('.nav-link')];
-  const titles = {home: 'Taras Koval — Computer Science at Western', projects: 'Projects — Taras Koval', contact: 'Contact — Taras Koval'};
+  const titles = {home: 'Taras Koval — Computer Science at Western', projects: 'Projects — Taras Koval', contact: 'Contact — Taras Koval', resume: 'Resume — Taras Koval'};
   function renderPage(focus = false) {
     const requested = location.hash.slice(1);
     const activePage = pages.some(page => page.id === requested) ? requested : 'home';
@@ -133,6 +133,27 @@ const projects = [];
   addEventListener('popstate', () => renderPage(true));
   addEventListener('hashchange', () => renderPage(true));
   renderPage();
+
+  /* ---------- Resume ---------- */
+  // Project links with an empty href stay hidden until a real link is added.
+  document.querySelectorAll('.project-link').forEach(link => {
+    if (!link.getAttribute('href').trim()) link.hidden = true;
+  });
+  // The resume sheet tilts gently toward the cursor.
+  const sheet = document.querySelector('#sheet');
+  if (!reduceMotion && matchMedia('(hover: hover)').matches) {
+    sheet.addEventListener('pointermove', e => {
+      const box = sheet.getBoundingClientRect();
+      const px = (e.clientX - box.left) / box.width - .5;
+      const py = (e.clientY - box.top) / box.height - .5;
+      sheet.style.setProperty('--ry', `${px * 3}deg`);
+      sheet.style.setProperty('--rx', `${py * -2}deg`);
+    });
+    sheet.addEventListener('pointerleave', () => {
+      sheet.style.setProperty('--ry', '0deg');
+      sheet.style.setProperty('--rx', '0deg');
+    });
+  }
 
   /* ---------- Copy email ---------- */
   const address = document.querySelector('#email-address').textContent.trim();
