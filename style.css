@@ -509,6 +509,11 @@ footer {
   border-top:1px solid var(--line);
 }
 .footer-name { font-size:13px; font-weight:600; color:var(--ink); }
+.footer-right { display:inline-flex; align-items:center; gap:10px; }
+/* A tiny paw that leads to Coco's page. */
+.paw { display:inline-flex; color:#d3cbdd; transition:color .3s, transform .3s var(--ease); }
+.paw svg { fill:currentColor; }
+.paw:hover, .paw:focus-visible { color:var(--accent); transform:rotate(-14deg) scale(1.25); }
 
 /* ---------- Responsive ---------- */
 @media(min-width:1450px) {

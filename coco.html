@@ -1,0 +1,95 @@
+<!doctype html>
+<!-- Copyright (c) 2026 Taras Koval. All rights reserved. See LICENSE. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fcfcfa">
+  <meta name="robots" content="noindex">
+  <title>Coco — taraskoval.ca</title>
+  <meta name="description" content="You found Coco.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="./style.css?v=9">
+  <link rel="stylesheet" href="./coco.css?v=1">
+  <script src="./coco.js?v=1" defer></script>
+</head>
+<body class="coco-page">
+<div class="site-shell">
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="Taras Koval, home">tk<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="./" class="nav-link">← Back to the site</a>
+    </nav>
+  </header>
+
+  <main id="main" class="coco">
+    <section class="coco-hero">
+      <p class="coco-prompt"><span class="accent">~/taras $</span> cat coco<span class="coco-cursor" aria-hidden="true"></span></p>
+      <h1 class="coco-name">Coco<span class="accent">.</span></h1>
+      <p class="coco-lede">You found the secret page. It belongs to my cat.</p>
+      <p class="coco-status"><span class="muted">$ coco --status</span><br>napping <span class="muted">(location unknown)</span></p>
+    </section>
+
+    <section class="coco-grid">
+      <figure class="spin-card">
+        <div class="spin" id="spin" tabindex="0" role="img"
+             aria-label="Coco asleep on her cat tree. Drag or use the arrow keys to walk around her.">
+          <img id="spin-frame" src="./images/coco/spin/01.jpg" width="540" height="660" alt="" draggable="false">
+          <span class="spin-hint" id="spin-hint">drag to walk around her</span>
+        </div>
+        <figcaption><span class="mono">coco.spin</span> · She slept through the whole thing.</figcaption>
+      </figure>
+
+      <article class="profile" aria-label="Coco's profile">
+        <div class="profile-bar"><span></span><span></span><span></span><b>coco.txt</b></div>
+        <dl>
+          <dt>Name</dt><dd>Coco</dd>
+          <dt>Position</dt><dd>Head of Keyboard Testing</dd>
+          <dt>Found</dt><dd>Napping, inside or in the backyard. Usually somewhere no one can find her.</dd>
+          <dt>Loves</dt><dd>Adventures, nature, sleeping with the family, and lying on whatever keyboard you’re using.</dd>
+          <dt>Record</dt><dd>Escaped the backyard so many times the backyard got a fence. Case closed.</dd>
+          <dt>Rating</dt><dd>An amazing cat. <span class="stars" aria-label="5 out of 5">★★★★★</span></dd>
+        </dl>
+      </article>
+    </section>
+
+    <section class="coin-wrap" aria-labelledby="coin-title">
+      <div>
+        <h2 id="coin-title">Heads or tails?</h2>
+        <p class="muted">Flip a Coco. Both sides are a win.</p>
+        <p class="coin-result" id="coin-result" aria-live="polite">&nbsp;</p>
+      </div>
+      <button class="coin" id="coin" type="button" aria-label="Flip the coin">
+        <span class="coin-inner" id="coin-inner">
+          <span class="coin-face heads"><img src="./images/coco/heads.jpg" alt="Coco's face" width="600" height="600"></span>
+          <span class="coin-face tails"><img src="./images/coco/tails.jpg" alt="Coco's back end and tail" width="600" height="600"></span>
+        </span>
+      </button>
+    </section>
+
+    <section class="gallery-wrap" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Field notes</h2>
+      <p class="muted">Observed in her natural habitat: the top of the cat tree.</p>
+      <ul class="gallery">
+        <li><img src="./images/coco/1.jpg" alt="Coco stretched out with one paw hanging over the edge" loading="lazy" width="720" height="960"><span>nap_01.jpg</span></li>
+        <li><img src="./images/coco/2.jpg" alt="Coco looking up at the camera from her bed" loading="lazy" width="720" height="960"><span>nap_02.jpg</span></li>
+        <li><img src="./images/coco/3.jpg" alt="Coco curled up, looking sideways" loading="lazy" width="720" height="960"><span>nap_03.jpg</span></li>
+        <li><img src="./images/coco/6.jpg" alt="Coco lounging next to the couch" loading="lazy" width="720" height="960"><span>nap_04.jpg</span></li>
+        <li><img src="./images/coco/8.jpg" alt="Coco from above, one paw reaching for the window" loading="lazy" width="720" height="960"><span>nap_05.jpg</span></li>
+        <li><img src="./images/coco/7.jpg" alt="Coco from behind, looking out the window" loading="lazy" width="720" height="960"><span>nap_06.jpg</span></li>
+        <li><img src="./images/coco/4.jpg" alt="Coco's back, fast asleep" loading="lazy" width="720" height="960"><span>nap_07.jpg</span></li>
+        <li><img src="./images/coco/5.jpg" alt="Coco's back legs stretched out by the window" loading="lazy" width="720" height="960"><span>nap_08.jpg</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <a class="footer-name" href="./">Taras Koval<span class="accent">.</span></a>
+    <span>Coco did not help build this page. She did sit on the keyboard.</span>
+  </footer>
+</div>
+</body>
+</html>

@@ -225,4 +225,15 @@
     form.hidden = false;
     form.querySelector('input:not([type=hidden]):not(.honeypot)').focus();
   });
+
+  /* ---------- Secret: type "coco" anywhere (or "cat coco") ---------- */
+  let typed = '';
+  document.addEventListener('keydown', e => {
+    if (e.target.closest('input, textarea, select, [contenteditable]') || e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key.length !== 1) return;
+    typed = (typed + e.key.toLowerCase()).slice(-4);
+    if (typed === 'coco') location.href = './coco.html';
+  });
+  console.log('%c~/taras $%c cat coco', 'color:#645081;font-weight:600', 'color:inherit');
+  console.log('Psst. Type "coco" anywhere on the page.');
 })();

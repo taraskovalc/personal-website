@@ -3,3 +3,9 @@ Thumbs.db
 .env
 .env.*
 node_modules/
+
+# Raw videos (too big for the site)
+*.mov
+*.MOV
+*.mp4
+.coco-work/
