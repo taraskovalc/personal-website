@@ -1,17 +1,6 @@
 // Copyright (c) 2026 Taras Koval. All rights reserved. See LICENSE.
 'use strict';
 
-// Add finished projects here when they're ready.
-// Shape: { title, description, technologies: ['Python'], url: 'https://github.com/…' }
-const projects = [
-  {
-    title: 'Slotted',
-    description: 'Turns a Western DraftMySchedule page into calendar events for the whole term, skipping reading weeks and holidays, for Google, Apple, Outlook and other calendar apps. Accounts can save a schedule and get a private link that keeps their calendar up to date. The webpage is on GitHub Pages; the API and PostgreSQL database run in Docker on my home Ubuntu server behind a Cloudflare Tunnel.',
-    technologies: ['JavaScript', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
-    url: 'https://slotted.taraskoval.ca/',
-  },
-];
-
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -77,37 +66,6 @@ const projects = [
       glow.style.setProperty('--gy', `${y}px`);
       requestAnimationFrame(follow);
     })();
-  }
-
-  /* ---------- Projects ---------- */
-  const list = document.querySelector('#project-list');
-  if (projects.length) {
-    document.querySelector('#projects-empty').hidden = true;
-    list.classList.add('project-list');
-    projects.forEach((project, index) => {
-      const url = new URL(project.url);
-      if (url.protocol !== 'https:') return;
-      const row = document.createElement('article');
-      row.className = 'project-card';
-      const number = document.createElement('span');
-      number.className = 'project-num';
-      number.textContent = String(index + 1).padStart(2, '0');
-      const body = document.createElement('div');
-      const title = document.createElement('h3');
-      title.textContent = project.title;
-      const description = document.createElement('p');
-      description.textContent = project.description;
-      const tech = document.createElement('p');
-      tech.className = 'project-tech';
-      tech.textContent = project.technologies.join(' / ');
-      body.append(title, description, tech);
-      const link = document.createElement('a');
-      link.href = url.href;
-      link.textContent = '↗';
-      link.setAttribute('aria-label', `View ${project.title}`);
-      row.append(number, body, link);
-      list.append(row);
-    });
   }
 
   /* ---------- Page views (hash routes work on any static host) ---------- */
