@@ -3,7 +3,14 @@
 
 // Add finished projects here when they're ready.
 // Shape: { title, description, technologies: ['Python'], url: 'https://github.com/…' }
-const projects = [];
+const projects = [
+  {
+    title: 'Slotted',
+    description: 'Turns a Western DraftMySchedule page into calendar events for the whole term, skipping reading weeks and holidays, for Google, Apple, Outlook and other calendar apps. Accounts can save a schedule and get a private link that keeps their calendar up to date. The webpage is on GitHub Pages; the API and PostgreSQL database run in Docker on my home Ubuntu server behind a Cloudflare Tunnel.',
+    technologies: ['JavaScript', 'Node.js', 'Express', 'PostgreSQL', 'Docker'],
+    url: 'https://slotted.taraskoval.ca/',
+  },
+];
 
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;

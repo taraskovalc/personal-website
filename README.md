@@ -1,13 +1,14 @@
 # Taras Koval — personal website
 
-My personal website. I'm a Computer Science student at Western University
+My personal website. I'm a Computer Science student at Western University.
 
 **Live site:** https://taraskoval.ca/
 
 ## What's here
 
 - **Home**: who I am, plus a small terminal-style line that cycles through some of the tools I use.
-- **Projects**: finished projects will go here as I complete them.
+- **Projects**: things I've built, starting with [Slotted](https://slotted.taraskoval.ca/).
+- **Resume**: a one-page resume, with a PDF to download.
 - **Contact**: a working contact form and my email address.
 
 ## Built with
