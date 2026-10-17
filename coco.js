@@ -88,19 +88,78 @@
   ready.then(play);
 
   /* ---------- Heads or tails ---------- */
+  // The coin jumps up, spins, lands with a small bounce, then the answer types out.
   const coin = document.querySelector('#coin');
+  const toss = document.querySelector('#coin-toss');
   const inner = document.querySelector('#coin-inner');
+  const shadow = document.querySelector('#coin-shadow');
   const result = document.querySelector('#coin-result');
-  let turns = 0;
+  const tally = document.querySelector('#coin-tally');
+  const LINES = {
+    heads: ['Heads. She’s looking right at you.', 'Heads. She has noticed you. Unclear if that’s good.', 'Heads. Blue eyes, zero thoughts.'],
+    tails: ['Tails. She has turned her back on you.', 'Tails. Respectfully, no.', 'Tails. She’s busy. She’s always busy.'],
+  };
+  const count = { heads: 0, tails: 0 };
+  let angle = 0;  // how far the coin has turned in total, in degrees
+  let typing = null;
+
+  function typeOut(text) {
+    clearInterval(typing);
+    let n = 0;
+    result.innerHTML = '<span class="caret"></span>';
+    typing = setInterval(() => {
+      n++;
+      result.textContent = text.slice(0, n);
+      if (n < text.length) result.insertAdjacentHTML('beforeend', '<span class="caret"></span>');
+      else clearInterval(typing);
+    }, reduceMotion ? 0 : 28);
+  }
+
   coin.addEventListener('click', () => {
-    const heads = Math.random() < .5;
-    // Spin a few full turns, then land on the right side.
-    turns += 4 + (heads ? 0 : .5) - (turns % 1);
-    inner.classList.add('flipping');
-    inner.style.transform = `rotateY(${turns * 360}deg)`;
-    result.textContent = '…';
-    setTimeout(() => {
-      result.textContent = heads ? 'Heads. She’s looking right at you.' : 'Tails. She has turned her back on you.';
-    }, reduceMotion ? 0 : 1300);
+    if (coin.classList.contains('busy')) return;
+    const side = Math.random() < .5 ? 'heads' : 'tails';
+    // Five full turns, then whatever extra is needed to land on the chosen side.
+    const landOn = side === 'heads' ? 0 : 180;
+    const start = angle;
+    angle = start + 360 * 5 + ((landOn - (start % 360)) + 360) % 360;
+    let spin = null;
+    const done = () => {
+      // Keep the final position, then drop the finished animation.
+      inner.style.transform = `rotateY(${angle}deg)`;
+      if (spin) spin.cancel();
+      coin.classList.remove('busy');
+      count[side]++;
+      const options = LINES[side];
+      typeOut(options[Math.floor(Math.random() * options.length)]);
+      tally.textContent = `heads ${count.heads} · tails ${count.tails}`;
+    };
+
+    result.textContent = '';
+    if (reduceMotion) {
+      inner.style.transform = `rotateY(${angle}deg)`;
+      done();
+      return;
+    }
+    coin.classList.add('busy');
+    const time = 1500;
+    spin = inner.animate([
+      { transform: `rotateX(0deg) rotateY(${start}deg)` },
+      { transform: `rotateX(28deg) rotateY(${(start + angle) / 2}deg)`, offset: .5 },
+      { transform: `rotateX(0deg) rotateY(${angle}deg)` },
+    ], { duration: time, easing: 'cubic-bezier(.25,.7,.35,1)', fill: 'forwards' });
+    toss.animate([
+      { transform: 'translateY(0) scale(1)' },
+      { transform: 'translateY(-150px) scale(1.12)', offset: .42, easing: 'ease-in' },
+      { transform: 'translateY(0) scale(1)', offset: .8, easing: 'ease-out' },
+      { transform: 'translateY(-16px) scale(1.02)', offset: .9, easing: 'ease-in' },
+      { transform: 'translateY(0) scale(1)' },
+    ], { duration: time, easing: 'cubic-bezier(.3,.6,.4,1)' });
+    shadow.animate([
+      { transform: 'scale(1)', opacity: 1 },
+      { transform: 'scale(.45)', opacity: .35, offset: .42 },
+      { transform: 'scale(1)', opacity: 1, offset: .8 },
+      { transform: 'scale(.9)', opacity: .9, offset: .9 },
+      { transform: 'scale(1)', opacity: 1 },
+    ], { duration: time, easing: 'cubic-bezier(.3,.6,.4,1)' }).onfinish = done;
   });
 })();

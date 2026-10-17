@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="./style.css?v=9">
-  <link rel="stylesheet" href="./coco.css?v=1">
-  <script src="./coco.js?v=1" defer></script>
+  <link rel="stylesheet" href="./coco.css?v=2">
+  <script src="./coco.js?v=2" defer></script>
 </head>
 <body class="coco-page">
 <div class="site-shell">
@@ -48,9 +48,11 @@
         <dl>
           <dt>Name</dt><dd>Coco</dd>
           <dt>Position</dt><dd>Head of Keyboard Testing</dd>
-          <dt>Found</dt><dd>Napping, inside or in the backyard. Usually somewhere no one can find her.</dd>
-          <dt>Loves</dt><dd>Adventures, nature, sleeping with the family, and lying on whatever keyboard you’re using.</dd>
-          <dt>Record</dt><dd>Escaped the backyard so many times the backyard got a fence. Case closed.</dd>
+          <dt>Last seen</dt><dd>Everywhere. Currently: nowhere. Check the spot you already checked. Twice.</dd>
+          <dt>Loves</dt><dd>The great outdoors, your side of the bed, and typing <span class="mono">asdfghjkkkkkkk</span> into whatever you were working on.</dd>
+          <dt>Skills</dt><dd>Hide and seek (undefeated). Typing (unreadable).</dd>
+          <dt>Record</dt><dd>Serial backyard escapee. Forced into early retirement by a fence. Still studying it.</dd>
+          <dt>Hours</dt><dd>Naps 9 to 5, then 5 to 9.</dd>
           <dt>Rating</dt><dd>An amazing cat. <span class="stars" aria-label="5 out of 5">★★★★★</span></dd>
         </dl>
       </article>
@@ -60,14 +62,23 @@
       <div>
         <h2 id="coin-title">Heads or tails?</h2>
         <p class="muted">Flip a Coco. Both sides are a win.</p>
-        <p class="coin-result" id="coin-result" aria-live="polite">&nbsp;</p>
+        <p class="coin-result" id="coin-result" aria-live="polite"></p>
+        <p class="coin-tally" id="coin-tally"></p>
       </div>
-      <button class="coin" id="coin" type="button" aria-label="Flip the coin">
-        <span class="coin-inner" id="coin-inner">
-          <span class="coin-face heads"><img src="./images/coco/heads.jpg" alt="Coco's face" width="600" height="600"></span>
-          <span class="coin-face tails"><img src="./images/coco/tails.jpg" alt="Coco's back end and tail" width="600" height="600"></span>
-        </span>
-      </button>
+      <div class="coin-stage">
+        <button class="coin" id="coin" type="button" aria-label="Flip the coin">
+          <span class="coin-toss" id="coin-toss">
+            <span class="coin-wobble">
+              <span class="coin-inner" id="coin-inner">
+                <span class="coin-rim"></span><span class="coin-rim"></span><span class="coin-rim"></span><span class="coin-rim"></span><span class="coin-rim"></span>
+                <span class="coin-face heads"><img src="./images/coco/heads.jpg" alt="Coco's face" width="600" height="600"></span>
+                <span class="coin-face tails"><img src="./images/coco/tails.jpg" alt="Coco's back end and tail" width="600" height="600"></span>
+              </span>
+            </span>
+          </span>
+        </button>
+        <span class="coin-shadow" id="coin-shadow" aria-hidden="true"></span>
+      </div>
     </section>
 
     <section class="gallery-wrap" aria-labelledby="gallery-title">
