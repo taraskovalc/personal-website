@@ -21,7 +21,7 @@
   });
 
   /* ---------- Tools line: each word "decodes" into the next ---------- */
-  const words = ['Python', 'Java', 'C', 'JavaScript', 'HTML/CSS', 'Linux', 'Git', 'Docker'];
+  const words = ['Python', 'Java', 'C', 'JavaScript', 'Node.js', 'SQL', 'PostgreSQL', 'HTML/CSS', 'Linux', 'Git', 'Docker', 'Arduino'];
   const scramble = document.querySelector('#scramble');
   const glyphs = '!<>-_/[]{}=+*^?#01';
   let wordIndex = 0;
