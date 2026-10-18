@@ -9,3 +9,4 @@ node_modules/
 *.MOV
 *.mp4
 .coco-work/
+coco-originals/
