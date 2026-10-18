@@ -5,11 +5,11 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- The spin: 60 frames from a video of walking around her ---------- */
-  const FRAMES = 60;
+  const FRAMES = 77;
   const box = document.querySelector('#spin');
   const img = document.querySelector('#spin-frame');
   const hint = document.querySelector('#spin-hint');
-  const srcs = Array.from({ length: FRAMES }, (_, n) => `./images/coco/spin/${String(n + 1).padStart(2, '0')}.jpg`);
+  const srcs = Array.from({ length: FRAMES }, (_, n) => `./images/coco/spin/${String(n + 1).padStart(2, '0')}.jpg?v=2`);
 
   // Load every frame first so dragging never shows a blank image.
   let loaded = 0;
@@ -97,7 +97,7 @@
   const tally = document.querySelector('#coin-tally');
   const LINES = {
     heads: ['Heads. She’s looking right at you.', 'Heads. She has noticed you. Unclear if that’s good.', 'Heads. Blue eyes, zero thoughts.'],
-    tails: ['Tails. She has turned her back on you.', 'Tails. Respectfully, no.', 'Tails. She’s busy. She’s always busy.'],
+    tails: ['Tails. Do not disturb.', 'Tails. Respectfully, no.', 'Tails. She can’t see you, so you can’t see her.'],
   };
   const count = { heads: 0, tails: 0 };
   let angle = 0;  // how far the coin has turned in total, in degrees

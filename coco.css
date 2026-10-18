@@ -31,7 +31,7 @@
 }
 .spin-card { margin:0; }
 .spin {
-  position:relative; aspect-ratio:540/660; overflow:hidden;
+  position:relative; aspect-ratio:540/640; overflow:hidden;
   border-radius:16px; background:var(--field);
   cursor:grab; touch-action:pan-y; user-select:none;
   box-shadow:0 18px 40px -24px rgba(31,33,29,.45);
@@ -131,7 +131,10 @@
 .gallery li:nth-child(5n) { --r:2.4deg; }
 .gallery li:hover { transform:rotate(0) translateY(-6px) scale(1.03); z-index:1; box-shadow:0 22px 40px -18px rgba(31,33,29,.5), 0 0 0 1px var(--line); }
 .gallery img { width:100%; height:auto; aspect-ratio:3/4; object-fit:cover; display:block; border-radius:2px; }
-.gallery span { display:block; margin-top:9px; font:12px var(--mono); color:var(--muted); }
+.gallery li.wide { grid-column:span 2; --r:-.5deg; }
+.gallery li.wide img { aspect-ratio:3/2; }
+.gallery li { min-width:0; }
+.gallery span { display:block; margin-top:9px; font:12px var(--mono); color:var(--muted); overflow-wrap:anywhere; }
 
 /* ---------- Motion ---------- */
 @keyframes coco-up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
@@ -153,6 +156,7 @@
   .coin-stage { width:180px; }
   .coin { width:180px; height:180px; }
   .gallery { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:20px 14px; }
+  .gallery span { font-size:11px; }
   .profile dl { padding:6px 16px 12px; column-gap:16px; }
   footer { flex-direction:column; align-items:flex-start; gap:6px; }
 }
