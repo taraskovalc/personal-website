@@ -277,20 +277,16 @@ nav a[aria-current=page]:after { transform:scaleX(1); }
 
 /* Telescope tracker: picture on the left, story on the right */
 .proj-split { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); gap:32px; align-items:start; }
-/* Telescope tracker: the build photo, with the bench photo pinned over its corner */
-.proj-media { position:relative; padding:0 0 48px; }
+/* Telescope tracker: one photo of the build */
+.proj-media { margin:0; }
 .proj-media figure { margin:0; }
-.proj-media img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; }
-.photo-main img { border-radius:16px; box-shadow:0 18px 40px -20px rgba(40,25,10,.5); }
-.photo-inset {
-  position:absolute; left:-14px; bottom:0; width:42%;
-  padding:6px 6px 8px; background:#fff; border-radius:6px;
-  box-shadow:0 14px 30px -14px rgba(40,25,10,.55), 0 0 0 1px var(--line);
-  transform:rotate(-3deg); transition:transform .4s var(--ease);
+.proj-media img {
+  display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover;
+  border-radius:16px; box-shadow:0 18px 40px -20px rgba(40,25,10,.5);
+  transition:transform .5s var(--ease);
 }
-.photo-inset img { border-radius:3px; }
-.photo-inset figcaption { margin-top:5px; font:10.5px var(--mono); color:var(--muted); text-align:center; }
-.proj-media:hover .photo-inset { transform:rotate(-1deg) translate(4px,-6px); }
+.proj-media:hover img { transform:scale(1.015); }
+.proj-split { align-items:center; }
 .build-log { list-style:none; margin:20px 0 22px; padding:0; display:grid; gap:10px; }
 .build-log li { position:relative; padding-left:30px; font-size:14.5px; line-height:1.5; color:var(--muted); }
 .build-log li:before {
@@ -557,7 +553,6 @@ footer {
   .proj-stats b { font-size:26px; }
   .proj-stats span { margin:0; }
   .proj-split, .proj-small { grid-template-columns:1fr; gap:20px; }
-  .photo-inset { left:-6px; width:42%; }
   .proj-links { width:100%; }
   .proj-links .btn { flex:1; }
   .lede { font-size:16px; margin-bottom:32px; }
