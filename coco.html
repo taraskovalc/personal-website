@@ -110,6 +110,27 @@
   </footer>
 </div>
   <!-- Cloudflare Web Analytics: anonymous visit counts, no cookies -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3c8082f82567437b84ee8ab9d39eb405"}'></script>
+  <script>
+    // Owner opt-out: visit ?nostats=1 once and this browser stops counting its
+    // own visits (?nostats=0 turns it back on). Saved only in this browser.
+    (function () {
+      var url = new URL(location.href), choice = url.searchParams.get('nostats'), off = false;
+      try {
+        if (choice === '1') localStorage.setItem('site-nostats', '1');
+        if (choice === '0') localStorage.removeItem('site-nostats');
+        off = localStorage.getItem('site-nostats') === '1';
+      } catch (e) {}
+      if (choice !== null) {
+        url.searchParams.delete('nostats');
+        history.replaceState(history.state, '', url);
+      }
+      if (off) return;
+      var beacon = document.createElement('script');
+      beacon.defer = true;
+      beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+      beacon.setAttribute('data-cf-beacon', '{"token": "3c8082f82567437b84ee8ab9d39eb405"}');
+      document.body.appendChild(beacon);
+    })();
+  </script>
 </body>
 </html>
