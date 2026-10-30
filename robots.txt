@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taraskoval.ca/sitemap.xml
